@@ -5,8 +5,15 @@ var PORT = process.env.PORT || 3000;
 
 app.use(middleware.logger);
 
-app.get("/hakkimda", middleware.requireAuthentication, function (res, res) {
-  res.send("hakkımda Sayfası");
+app.get("/hakkimda", middleware.requireAuthentication, function (req, res) {
+  res.send(`Hakkımda Sayfası`);
+
+});
+
+app.get("/kullanici", middleware.requireAuthentication, function (req, res) {
+  var id = req.query.id || "";
+  res.send(`Kullanıcı Sayfası Sorgu Sayfası: ${id}`);
+
 });
 
 app.use(express.static(__dirname + "/public"));
